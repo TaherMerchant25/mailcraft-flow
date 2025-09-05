@@ -5,7 +5,7 @@
 /* Mail Generation Agent Design System */
 @layer base {
   :root {
-    /* Brand Colors */
+    /* Force Dark Mode - Brand Colors */
     --background: 220 20% 8%;
     --foreground: 210 40% 98%;
     
@@ -27,8 +27,8 @@
     --secondary-foreground: 222.2 47.4% 11.2%;
     
     /* UI State Colors */
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
     --accent: 248 95% 95%;
     --accent-foreground: 248 95% 30%;
     
@@ -41,9 +41,9 @@
     --destructive-foreground: 0 0% 100%;
     
     /* Form Elements */
-    --border: 214.3 31.8% 91.4%;
-    --input: 0 0% 100%;
-    --input-border: 214.3 31.8% 91.4%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --input-border: 217.2 32.6% 25%;
     --ring: 248 95% 70%;
     
     /* Step Indicator */

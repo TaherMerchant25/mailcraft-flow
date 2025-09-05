@@ -1,111 +1,98 @@
 import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
 import { Link } from "react-router-dom"
-import { Mail, Users, Zap, Shield, ArrowRight, Sparkles } from "lucide-react"
+import { Users, Shield, Sparkles, ArrowRight } from "lucide-react"
 
 const Index = () => {
-  const features = [
-    {
-      icon: Mail,
-      title: "AI Email Generation",
-      description: "Create professional collaboration emails with AI assistance",
-      link: "/email-generator"
-    },
-    {
-      icon: Users,
-      title: "Multi-step Process",
-      description: "Guided 3-step process for perfect email creation",
-      link: "/email-generator"
-    },
-    {
-      icon: Zap,
-      title: "Custom Templates",
-      description: "Choose from various email templates and themes",
-      link: "/email-generator"
-    },
-    {
-      icon: Shield,
-      title: "Admin Dashboard",
-      description: "Manage and track all generated emails",
-      link: "/admin/login"
-    }
-  ]
-
   return (
-    <div className="min-h-screen bg-background">
-      {/* Hero Section */}
-      <section className="container mx-auto px-4 pt-20 pb-16 text-center">
-        <div className="max-w-4xl mx-auto">
-          <h1 className="text-6xl font-bold mb-6 bg-gradient-to-r from-primary via-purple-500 to-pink-500 bg-clip-text text-transparent">
-            Mail Generation Agent
+    <div className="min-h-screen bg-background text-foreground relative overflow-hidden">
+      {/* Background Effects */}
+      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-purple-500/5" />
+      <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-primary/10 rounded-full blur-3xl" />
+      <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-purple-500/10 rounded-full blur-3xl" />
+      
+      {/* Header */}
+      <header className="relative z-10 border-b border-border/50 bg-background/80 backdrop-blur-md">
+        <div className="container mx-auto px-4 py-4 flex items-center justify-between">
+          <div className="flex items-center space-x-2">
+            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-purple-600 flex items-center justify-center">
+              <Sparkles className="w-4 h-4 text-white" />
+            </div>
+            <h1 className="text-xl font-bold bg-gradient-to-r from-primary to-purple-500 bg-clip-text text-transparent">
+              Mail Agent
+            </h1>
+          </div>
+          <span className="text-sm text-muted-foreground hidden md:block">
+            AIMS-DTU • brAInwave 2025
+          </span>
+        </div>
+      </header>
+
+      {/* Main Content */}
+      <main className="relative z-10 container mx-auto px-4 flex items-center justify-center min-h-[calc(100vh-80px)]">
+        <div className="text-center max-w-4xl">
+          {/* Hero Text */}
+          <h1 className="text-6xl md:text-8xl font-bold mb-8 tracking-tight">
+            <span className="bg-gradient-to-r from-foreground via-primary to-purple-500 bg-clip-text text-transparent">
+              Unlocking Potential,
+            </span>
+            <br />
+            <span className="bg-gradient-to-r from-primary via-purple-500 to-pink-500 bg-clip-text text-transparent">
+              Delivering Excellence.
+            </span>
           </h1>
-          <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto leading-relaxed">
-            AI-powered email generator for brAInwave 2025 collaborations. Create professional, 
-            personalized emails with our intelligent 3-step process.
+
+          {/* Subtitle */}
+          <p className="text-lg md:text-xl text-muted-foreground mb-12 max-w-2xl mx-auto leading-relaxed">
+            AI-powered email generation platform for brAInwave 2025 collaborations. 
+            Create professional, personalized outreach with intelligent automation.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link to="/email-generator">
-              <Button size="lg" className="bg-primary hover:bg-primary-hover text-primary-foreground px-8 py-3">
-                <Sparkles className="w-5 h-5 mr-2" />
-                Generate Email
-                <ArrowRight className="w-5 h-5 ml-2" />
+
+          {/* Action Buttons */}
+          <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-16">
+            <Link to="/user/login">
+              <Button 
+                size="lg" 
+                className="group relative overflow-hidden bg-transparent border-2 border-primary/30 hover:border-primary/50 text-foreground px-12 py-4 rounded-full transition-all duration-300 hover:scale-105"
+              >
+                <div className="absolute inset-0 bg-gradient-to-r from-primary/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <Users className="w-5 h-5 mr-3" />
+                <span className="text-lg font-medium">USER LOGIN</span>
+                <ArrowRight className="w-5 h-5 ml-3 group-hover:translate-x-1 transition-transform duration-300" />
               </Button>
             </Link>
+
             <Link to="/admin/login">
-              <Button variant="outline" size="lg" className="px-8 py-3">
-                <Shield className="w-5 h-5 mr-2" />
-                Admin Access
+              <Button 
+                size="lg" 
+                className="group relative overflow-hidden bg-transparent border-2 border-primary/30 hover:border-primary/50 text-foreground px-12 py-4 rounded-full transition-all duration-300 hover:scale-105"
+              >
+                <div className="absolute inset-0 bg-gradient-to-r from-primary/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <Shield className="w-5 h-5 mr-3" />
+                <span className="text-lg font-medium">ADMIN LOGIN</span>
+                <ArrowRight className="w-5 h-5 ml-3 group-hover:translate-x-1 transition-transform duration-300" />
               </Button>
             </Link>
           </div>
-        </div>
-      </section>
 
-      {/* Features Section */}
-      <section className="container mx-auto px-4 py-16">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold mb-4">Key Features</h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
-            Everything you need to create professional collaboration emails efficiently
-          </p>
-        </div>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
-          {features.map((feature, index) => (
-            <Link key={index} to={feature.link} className="group">
-              <Card className="h-full transition-all duration-300 hover:scale-105 hover:shadow-lg border-border/50 bg-card/50 backdrop-blur-sm">
-                <CardContent className="p-6 text-center">
-                  <div className="w-12 h-12 mx-auto mb-4 rounded-lg bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
-                    <feature.icon className="w-6 h-6 text-primary" />
-                  </div>
-                  <h3 className="text-lg font-semibold mb-2">{feature.title}</h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">
-                    {feature.description}
-                  </p>
-                </CardContent>
-              </Card>
-            </Link>
-          ))}
-        </div>
-      </section>
+          {/* Description */}
+          <div className="max-w-lg mx-auto">
+            <p className="text-muted-foreground leading-relaxed">
+              At Mail Agent, we believe in harnessing the power of technology to empower educational 
+              institutions and businesses alike.
+            </p>
+          </div>
 
-      {/* CTA Section */}
-      <section className="container mx-auto px-4 py-16 text-center">
-        <div className="max-w-2xl mx-auto">
-          <h2 className="text-3xl font-bold mb-4">Ready to Start?</h2>
-          <p className="text-muted-foreground mb-8">
-            Join the brAInwave 2025 collaboration movement with AI-powered email generation
-          </p>
-          <Link to="/email-generator">
-            <Button size="lg" className="bg-primary hover:bg-primary-hover text-primary-foreground px-8 py-3">
-              <Mail className="w-5 h-5 mr-2" />
-              Create Your First Email
-            </Button>
-          </Link>
+          {/* Scroll Indicator */}
+          <div className="mt-16 flex flex-col items-center">
+            <div className="w-px h-8 bg-gradient-to-b from-primary to-transparent" />
+            <span className="text-xs text-muted-foreground mt-2 tracking-wider uppercase">
+              SCROLL DOWN
+            </span>
+          </div>
         </div>
-      </section>
+      </main>
     </div>
-  );
-};
+  )
+}
 
-export default Index;
+export default Index

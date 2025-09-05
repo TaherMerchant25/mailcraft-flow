@@ -4,7 +4,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
-import { Clock, CheckCircle, XCircle, Mail, LogOut, FileText } from "lucide-react"
+import { Clock, CheckCircle, XCircle, Mail, LogOut, FileText, Paperclip, Upload } from "lucide-react"
 import { Link, useNavigate } from "react-router-dom"
 import { ThemeToggle } from "@/components/ui/theme-toggle"
 
@@ -13,8 +13,8 @@ interface EmailRequest {
   company: string
   recipient: string
   recipientName: string
-  senderAccount: string
   attachment: string
+  uploadedFiles?: File[]
   status: "pending" | "approved" | "rejected"
 }
 
@@ -26,7 +26,6 @@ export default function AdminDashboard() {
       company: "amazon",
       recipient: "pihuagr26@gmail.com",
       recipientName: "pihu",
-      senderAccount: "Cyber Troopers (cybertroopers25@gmail.com)",
       attachment: "brAInwave Brochure",
       status: "pending"
     }
@@ -52,6 +51,19 @@ export default function AdminDashboard() {
     )
   }
 
+  const handleFileUpload = (id: string, files: FileList | null) => {
+    if (!files) return
+    
+    const fileArray = Array.from(files)
+    setEmailRequests(prev => 
+      prev.map(req => 
+        req.id === id 
+          ? { ...req, uploadedFiles: [...(req.uploadedFiles || []), ...fileArray] }
+          : req
+      )
+    )
+  }
+
   const getStatusStats = () => {
     const pending = emailRequests.filter(req => req.status === "pending").length
     const approved = emailRequests.filter(req => req.status === "approved").length
@@ -65,11 +77,11 @@ export default function AdminDashboard() {
   const getStatusBadge = (status: string) => {
     switch (status) {
       case "pending":
-        return <Badge variant="outline" className="bg-status-pending/10 text-status-pending border-status-pending">pending</Badge>
+        return <Badge variant="outline" className="bg-warning/10 text-warning border-warning">pending</Badge>
       case "approved":
-        return <Badge variant="outline" className="bg-status-approved/10 text-status-approved border-status-approved">approved</Badge>
+        return <Badge variant="outline" className="bg-success/10 text-success border-success">approved</Badge>
       case "rejected":
-        return <Badge variant="outline" className="bg-status-rejected/10 text-status-rejected border-status-rejected">rejected</Badge>
+        return <Badge variant="outline" className="bg-destructive/10 text-destructive border-destructive">rejected</Badge>
       default:
         return <Badge variant="outline">{status}</Badge>
     }
@@ -102,8 +114,8 @@ export default function AdminDashboard() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
           <Card>
             <CardContent className="p-6 flex items-center">
-              <div className="w-12 h-12 bg-status-pending/10 rounded-full flex items-center justify-center mr-4">
-                <Clock className="w-6 h-6 text-status-pending" />
+              <div className="w-12 h-12 bg-warning/10 rounded-full flex items-center justify-center mr-4">
+                <Clock className="w-6 h-6 text-warning" />
               </div>
               <div>
                 <p className="text-sm text-muted-foreground">Pending Requests</p>
@@ -114,8 +126,8 @@ export default function AdminDashboard() {
 
           <Card>
             <CardContent className="p-6 flex items-center">
-              <div className="w-12 h-12 bg-status-approved/10 rounded-full flex items-center justify-center mr-4">
-                <CheckCircle className="w-6 h-6 text-status-approved" />
+              <div className="w-12 h-12 bg-success/10 rounded-full flex items-center justify-center mr-4">
+                <CheckCircle className="w-6 h-6 text-success" />
               </div>
               <div>
                 <p className="text-sm text-muted-foreground">Approved</p>
@@ -126,8 +138,8 @@ export default function AdminDashboard() {
 
           <Card>
             <CardContent className="p-6 flex items-center">
-              <div className="w-12 h-12 bg-status-rejected/10 rounded-full flex items-center justify-center mr-4">
-                <XCircle className="w-6 h-6 text-status-rejected" />
+              <div className="w-12 h-12 bg-destructive/10 rounded-full flex items-center justify-center mr-4">
+                <XCircle className="w-6 h-6 text-destructive" />
               </div>
               <div>
                 <p className="text-sm text-muted-foreground">Rejected</p>
@@ -150,9 +162,8 @@ export default function AdminDashboard() {
                   <TableRow>
                     <TableHead>Company</TableHead>
                     <TableHead>Recipient</TableHead>
-                    <TableHead>Sender Account</TableHead>
-                    <TableHead>Attachment</TableHead>
-                    <TableHead>Select Sender Account</TableHead>
+                    <TableHead>Attachments</TableHead>
+                    <TableHead>Upload Files</TableHead>
                     <TableHead>Status</TableHead>
                   </TableRow>
                 </TableHeader>
@@ -169,28 +180,47 @@ export default function AdminDashboard() {
                         <div>
                           <p className="font-medium">{request.recipient}</p>
                           <p className="text-sm text-muted-foreground">{request.recipientName}</p>
+                          <p className="text-xs text-muted-foreground mt-1">
+                            From: cybertroopers25@gmail.com
+                          </p>
                         </div>
                       </TableCell>
                       <TableCell>
-                        <p className="text-sm">{request.senderAccount}</p>
-                      </TableCell>
-                      <TableCell>
-                        <div className="flex items-center">
-                          <FileText className="w-4 h-4 mr-2 text-muted-foreground" />
-                          <span className="text-sm">{request.attachment}</span>
+                        <div className="space-y-2">
+                          <div className="flex items-center">
+                            <FileText className="w-4 h-4 mr-2 text-muted-foreground" />
+                            <span className="text-sm">{request.attachment}</span>
+                          </div>
+                          {request.uploadedFiles && request.uploadedFiles.length > 0 && (
+                            <div className="space-y-1">
+                              {request.uploadedFiles.map((file, index) => (
+                                <div key={index} className="flex items-center text-xs text-muted-foreground">
+                                  <Paperclip className="w-3 h-3 mr-1" />
+                                  {file.name}
+                                </div>
+                              ))}
+                            </div>
+                          )}
                         </div>
                       </TableCell>
                       <TableCell>
-                        <Select defaultValue="default">
-                          <SelectTrigger className="w-48">
-                            <SelectValue placeholder="Select Account" />
-                          </SelectTrigger>
-                          <SelectContent>
-                            <SelectItem value="default">Select Account</SelectItem>
-                            <SelectItem value="cyber-troopers">Cyber Troopers</SelectItem>
-                            <SelectItem value="aims-dtu">AIMS-DTU Official</SelectItem>
-                          </SelectContent>
-                        </Select>
+                        <div className="relative">
+                          <input
+                            type="file"
+                            multiple
+                            onChange={(e) => handleFileUpload(request.id, e.target.files)}
+                            className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+                            accept=".pdf,.doc,.docx,.txt,.jpg,.jpeg,.png"
+                          />
+                          <Button
+                            variant="outline"
+                            size="sm"
+                            className="w-full bg-muted/50 hover:bg-muted border-border text-foreground"
+                          >
+                            <Paperclip className="w-4 h-4 mr-2" />
+                            Upload Files
+                          </Button>
+                        </div>
                       </TableCell>
                       <TableCell>
                         <div className="flex items-center gap-2">
@@ -200,7 +230,7 @@ export default function AdminDashboard() {
                               <Button
                                 size="sm"
                                 variant="outline"
-                                className="h-7 px-2 text-xs bg-status-approved/10 hover:bg-status-approved/20 text-status-approved border-status-approved"
+                                className="h-7 px-2 text-xs bg-success/10 hover:bg-success/20 text-success border-success"
                                 onClick={() => handleStatusChange(request.id, "approved")}
                               >
                                 Approve
@@ -208,7 +238,7 @@ export default function AdminDashboard() {
                               <Button
                                 size="sm"
                                 variant="outline"
-                                className="h-7 px-2 text-xs bg-status-rejected/10 hover:bg-status-rejected/20 text-status-rejected border-status-rejected"
+                                className="h-7 px-2 text-xs bg-destructive/10 hover:bg-destructive/20 text-destructive border-destructive"
                                 onClick={() => handleStatusChange(request.id, "rejected")}
                               >
                                 Reject
