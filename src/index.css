@@ -6,17 +6,21 @@
 @layer base {
   :root {
     /* Brand Colors */
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --background: 220 20% 8%;
+    --foreground: 210 40% 98%;
     
     /* Card & Surface Colors */
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card: 220 20% 12%;
+    --card-foreground: 210 40% 98%;
     
     /* Interactive Elements */
-    --primary: 248 95% 70%;
+    --primary: 267 84% 81%;
     --primary-foreground: 0 0% 100%;
-    --primary-hover: 248 95% 65%;
+    --primary-hover: 267 84% 75%;
+    
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(267, 84%, 81%), hsl(290, 84%, 65%));
+    --gradient-text: linear-gradient(135deg, hsl(267, 84%, 81%), hsl(290, 84%, 75%));
     
     /* Secondary Actions */
     --secondary: 210 40% 96.1%;
@@ -75,15 +79,18 @@
 
   .dark {
     /* Dark Theme Colors */
-    --background: 222.2 84% 4.9%;
+    --background: 220 20% 8%;
     --foreground: 210 40% 98%;
     
-    --card: 217.2 32.6% 17.5%;
+    --card: 220 20% 12%;
     --card-foreground: 210 40% 98%;
     
-    --primary: 248 95% 70%;
+    --primary: 267 84% 81%;
     --primary-foreground: 0 0% 100%;
-    --primary-hover: 248 95% 75%;
+    --primary-hover: 267 84% 75%;
+    
+    --gradient-primary: linear-gradient(135deg, hsl(267, 84%, 81%), hsl(290, 84%, 65%));
+    --gradient-text: linear-gradient(135deg, hsl(267, 84%, 81%), hsl(290, 84%, 75%));
     
     --secondary: 217.2 32.6% 17.5%;
     --secondary-foreground: 210 40% 98%;
