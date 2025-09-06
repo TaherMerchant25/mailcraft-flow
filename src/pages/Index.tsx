@@ -31,7 +31,7 @@ const Index = () => {
       <main className="relative z-10 container mx-auto px-4 flex items-center justify-center min-h-[calc(100vh-80px)]">
         <div className="text-center max-w-4xl">
           {/* Hero Text */}
-          <h1 className="text-6xl md:text-8xl font-bold mb-8 tracking-tight">
+          <h1 className="text-4xl md:text-6xl font-bold mb-8 tracking-tight">
             <span className="bg-gradient-to-r from-foreground via-primary to-purple-500 bg-clip-text text-transparent">
               Unlocking Potential,
             </span>
@@ -42,7 +42,7 @@ const Index = () => {
           </h1>
 
           {/* Subtitle */}
-          <p className="text-lg md:text-xl text-muted-foreground mb-12 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-base md:text-lg text-muted-foreground mb-12 max-w-2xl mx-auto leading-relaxed">
             AI-powered email generation platform for brAInwave 2025 collaborations. 
             Create professional, personalized outreach with intelligent automation.
           </p>
@@ -56,7 +56,7 @@ const Index = () => {
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-primary/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 <Users className="w-5 h-5 mr-3" />
-                <span className="text-lg font-medium">USER LOGIN</span>
+                <span className="text-base font-medium">USER LOGIN</span>
                 <ArrowRight className="w-5 h-5 ml-3 group-hover:translate-x-1 transition-transform duration-300" />
               </Button>
             </Link>
@@ -68,7 +68,7 @@ const Index = () => {
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-primary/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 <Shield className="w-5 h-5 mr-3" />
-                <span className="text-lg font-medium">ADMIN LOGIN</span>
+                <span className="text-base font-medium">ADMIN LOGIN</span>
                 <ArrowRight className="w-5 h-5 ml-3 group-hover:translate-x-1 transition-transform duration-300" />
               </Button>
             </Link>

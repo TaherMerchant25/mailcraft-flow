@@ -92,7 +92,7 @@ export default function AdminDashboard() {
       {/* Header */}
       <header className="border-b">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-          <h1 className="text-2xl font-bold">Admin Dashboard</h1>
+          <h1 className="text-xl font-bold">Admin Dashboard</h1>
           <div className="flex items-center space-x-4">
             <Link to="/">
               <Button variant="outline" size="sm">
@@ -119,7 +119,7 @@ export default function AdminDashboard() {
               </div>
               <div>
                 <p className="text-sm text-muted-foreground">Pending Requests</p>
-                <p className="text-3xl font-bold">{stats.pending}</p>
+                <p className="text-2xl font-bold">{stats.pending}</p>
               </div>
             </CardContent>
           </Card>
@@ -131,7 +131,7 @@ export default function AdminDashboard() {
               </div>
               <div>
                 <p className="text-sm text-muted-foreground">Approved</p>
-                <p className="text-3xl font-bold">{stats.approved}</p>
+                <p className="text-2xl font-bold">{stats.approved}</p>
               </div>
             </CardContent>
           </Card>
@@ -143,7 +143,7 @@ export default function AdminDashboard() {
               </div>
               <div>
                 <p className="text-sm text-muted-foreground">Rejected</p>
-                <p className="text-3xl font-bold">{stats.rejected}</p>
+                <p className="text-2xl font-bold">{stats.rejected}</p>
               </div>
             </CardContent>
           </Card>
@@ -153,7 +153,7 @@ export default function AdminDashboard() {
         <Card>
           <CardContent className="p-0">
             <div className="p-6 border-b">
-              <h2 className="text-xl font-semibold">Email Requests</h2>
+              <h2 className="text-lg font-semibold">Email Requests</h2>
             </div>
             
             <div className="overflow-x-auto">

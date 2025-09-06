@@ -54,7 +54,7 @@ export default function UserLogin() {
               <Mail className="w-8 h-8 text-white" />
             </div>
             <div>
-              <CardTitle className="text-2xl font-bold text-foreground">Welcome Back</CardTitle>
+              <CardTitle className="text-xl font-bold text-foreground">Welcome Back</CardTitle>
               <CardDescription className="text-muted-foreground">
                 Sign in to access your email generation dashboard
               </CardDescription>
