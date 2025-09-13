@@ -3,22 +3,27 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { ArrowLeft, Mail, Chrome, Sparkles } from "lucide-react"
 
 export default function UserLogin() {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
+  const navigate = useNavigate()
 
   const handleGoogleLogin = () => {
-    // Google OAuth will be implemented after Supabase integration
-    alert("Google OAuth will be available after Supabase integration")
+    // Bypass authentication and go to email generator
+    navigate("/email-generator")
   }
 
   const handleEmailLogin = (e: React.FormEvent) => {
     e.preventDefault()
-    // Email/password login will be implemented after Supabase integration
-    alert("Email login will be available after Supabase integration")
+    // Check credentials and proceed to email generator
+    if (email === "admin@gmail.com" && password === "admin123") {
+      navigate("/email-generator")
+    } else {
+      alert("Invalid credentials. Use email: admin@gmail.com, password: admin123")
+    }
   }
 
   return (
